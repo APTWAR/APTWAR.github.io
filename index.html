@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>APT WAR | به زودی</title>
+  <title>ساخت | APT WAR</title>
   <style>
     @import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
 
@@ -34,7 +34,7 @@
       display: block;
       width: 20px;
       height: 20px;
-      background: rgba(255, 26, 26, 0.15);
+      background: rgba(255, 26, 26, 0.12);
       animation: floatUp 20s infinite;
       border-radius: 50%;
       bottom: -150px;
@@ -62,19 +62,21 @@
       position: relative;
       z-index: 10;
       text-align: center;
-      padding: 2rem;
-      background: rgba(10, 10, 10, 0.8);
+      padding: 2.5rem 2rem;
+      background: rgba(10, 10, 10, 0.75);
       backdrop-filter: blur(20px);
       border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      max-width: 600px;
+      width: 100%;
     }
 
     .logo {
       font-size: 5rem;
       font-weight: 900;
       line-height: 1.1;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
     }
 
     .logo .apt {
@@ -82,7 +84,7 @@
       letter-spacing: 15px;
       display: block;
       font-size: 0.7em;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
     }
 
     .logo .war {
@@ -90,25 +92,25 @@
       letter-spacing: 20px;
       display: block;
       font-size: 1.1em;
-      text-shadow: 0 0 40px rgba(255, 26, 26, 0.7);
+      text-shadow: 0 0 40px rgba(255, 26, 26, 0.6);
     }
 
-    .coming-soon {
-      font-size: 2.5rem;
+    .status-title {
+      font-size: 2.2rem;
       font-weight: 700;
       color: #ff4444;
-      margin-bottom: 0.5rem;
-      letter-spacing: 5px;
+      margin-bottom: 0.2rem;
+      letter-spacing: 3px;
     }
 
-    .subtitle {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 2.5rem;
-      letter-spacing: 2px;
+    .sub-status {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 2.2rem;
+      letter-spacing: 1px;
     }
 
-    .countdown {
+    .counter {
       display: flex;
       justify-content: center;
       gap: 1.2rem;
@@ -116,100 +118,85 @@
       flex-wrap: wrap;
     }
 
-    .countdown-item {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .counter-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
-      padding: 1.2rem 1.5rem;
-      min-width: 85px;
-      transition: 0.3s;
+      padding: 1rem 1.2rem;
+      min-width: 75px;
+      transition: 0.25s;
     }
 
-    .countdown-item:hover {
-      background: rgba(255, 26, 26, 0.1);
+    .counter-item:hover {
+      background: rgba(255, 26, 26, 0.08);
       border-color: #ff1a1a;
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(255, 26, 26, 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(255, 26, 26, 0.15);
     }
 
-    .countdown-number {
-      font-size: 3rem;
+    .counter-number {
+      font-size: 2.8rem;
       font-weight: 900;
       color: #ff1a1a;
       display: block;
       line-height: 1;
+      font-variant-numeric: tabular-nums;
     }
 
-    .countdown-label {
-      font-size: 0.8rem;
+    .counter-label {
+      font-size: 0.75rem;
       color: rgba(255, 255, 255, 0.5);
       margin-top: 0.4rem;
       letter-spacing: 1px;
     }
 
-    .rubika-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 1rem 3rem;
+    .placeholder-message {
+      display: inline-block;
+      padding: 0.6rem 2rem;
       font-family: 'Vazirmatn', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #ffffff;
-      text-decoration: none;
-      background: #ff1a1a;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: 0.3s;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 40px;
       letter-spacing: 1px;
-      box-shadow: 0 5px 25px rgba(255, 26, 26, 0.4);
+      margin-top: 0.2rem;
+      cursor: default;
     }
 
-    .rubika-btn:hover {
-      background: #ff4444;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 35px rgba(255, 26, 26, 0.6);
-    }
-
-    .rubika-btn:active {
-      transform: scale(0.96);
-    }
-
-    .footer-text {
-      color: rgba(255, 255, 255, 0.35);
-      font-size: 0.8rem;
-      margin-top: 2rem;
-      letter-spacing: 2px;
+    .footer-note {
+      color: rgba(255, 255, 255, 0.25);
+      font-size: 0.75rem;
+      margin-top: 2.2rem;
+      letter-spacing: 1.5px;
     }
 
     @media (max-width: 768px) {
       .main-container {
-        padding: 1.5rem;
+        padding: 1.8rem 1.2rem;
         margin: 1rem;
         border-radius: 24px;
       }
       .logo {
-        font-size: 3.5rem;
+        font-size: 3.8rem;
       }
       .logo .apt { letter-spacing: 8px; }
       .logo .war { letter-spacing: 12px; }
-      .coming-soon { font-size: 2rem; }
-      .countdown { gap: 0.7rem; }
-      .countdown-item { padding: 1rem 1rem; min-width: 65px; border-radius: 12px; }
-      .countdown-number { font-size: 2.2rem; }
-      .rubika-btn { padding: 0.9rem 2.2rem; font-size: 1.1rem; }
+      .status-title { font-size: 1.8rem; }
+      .counter { gap: 0.7rem; }
+      .counter-item { padding: 0.8rem 0.8rem; min-width: 60px; border-radius: 12px; }
+      .counter-number { font-size: 2.2rem; }
     }
 
     @media (max-width: 480px) {
       .logo { font-size: 2.8rem; }
       .logo .apt { letter-spacing: 5px; }
       .logo .war { letter-spacing: 8px; }
-      .coming-soon { font-size: 1.6rem; letter-spacing: 2px; }
-      .countdown-item { min-width: 55px; padding: 0.8rem 0.7rem; }
-      .countdown-number { font-size: 1.8rem; }
-      .countdown-label { font-size: 0.7rem; }
-      .rubika-btn { padding: 0.8rem 1.8rem; font-size: 1rem; }
+      .status-title { font-size: 1.5rem; letter-spacing: 1px; }
+      .counter-item { min-width: 50px; padding: 0.6rem 0.5rem; }
+      .counter-number { font-size: 1.8rem; }
+      .counter-label { font-size: 0.65rem; }
     }
   </style>
 </head>
@@ -225,60 +212,65 @@
       <span class="war">WAR</span>
     </div>
 
-    <h2 class="coming-soon">به زودی</h2>
-    <p class="subtitle">سایت در حال ساخت است</p>
+    <h2 class="status-title">در حال ساخت</h2>
+    <p class="sub-status">زمان سپری‌شده از شروع</p>
 
-    <div class="countdown" id="countdown">
-      <div class="countdown-item">
-        <span class="countdown-number" id="days">00</span>
-        <span class="countdown-label">روز</span>
+    <div class="counter" id="uptimeCounter">
+      <div class="counter-item">
+        <span class="counter-number" id="days">00</span>
+        <span class="counter-label">روز</span>
       </div>
-      <div class="countdown-item">
-        <span class="countdown-number" id="hours">00</span>
-        <span class="countdown-label">ساعت</span>
+      <div class="counter-item">
+        <span class="counter-number" id="hours">00</span>
+        <span class="counter-label">ساعت</span>
       </div>
-      <div class="countdown-item">
-        <span class="countdown-number" id="minutes">00</span>
-        <span class="countdown-label">دقیقه</span>
+      <div class="counter-item">
+        <span class="counter-number" id="minutes">00</span>
+        <span class="counter-label">دقیقه</span>
       </div>
-      <div class="countdown-item">
-        <span class="countdown-number" id="seconds">00</span>
-        <span class="countdown-label">ثانیه</span>
+      <div class="counter-item">
+        <span class="counter-number" id="seconds">00</span>
+        <span class="counter-label">ثانیه</span>
       </div>
     </div>
 
-<a href="https://rubika.ir/APTWAR11" target="_blank" class="rubika-btn">
-      ⚡ Go To Rubika
-    </a>
+    <div class="placeholder-message">
+      ⚡ اخبار · لوح تقدیر · رویدادها
+    </div>
 
-    <p class="footer-text">© 2026 APT WAR</p>
+    <p class="footer-note">© 2026 APT WAR · ساخت</p>
   </div>
 
   <script>
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 21);
-    targetDate.setHours(22, 30, 0, 0);
+    (function() {
+      const startTimeKey = 'aptwar_start_timestamp';
+      let startTimestamp = localStorage.getItem(startTimeKey);
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance < 0) {
-        document.getElementById('days').textContent = '00';
-        document.getElementById('hours').textContent = '00';
-        document.getElementById('minutes').textContent = '00';
-        document.getElementById('seconds').textContent = '00';
-        return;
+      if (!startTimestamp) {
+        startTimestamp = Date.now();
+        localStorage.setItem(startTimeKey, startTimestamp);
+      } else {
+        startTimestamp = parseInt(startTimestamp, 10);
       }
 
-      document.getElementById('days').textContent = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-      document.getElementById('hours').textContent = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-      document.getElementById('minutes').textContent = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-      document.getElementById('seconds').textContent = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
-    }
+      function updateUptime() {
+        const now = Date.now();
+        const elapsed = Math.max(0, now - startTimestamp);
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+        const days = Math.floor(elapsed / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((elapsed % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((elapsed % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((elapsed % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+      }
+
+      updateUptime();
+      setInterval(updateUptime, 1000);
+    })();
   </script>
 </body>
 </html>
