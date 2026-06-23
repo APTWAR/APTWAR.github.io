@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -281,6 +280,7 @@
       align-items: center;
       justify-content: space-between;
       transition: 0.25s;
+      cursor: pointer;
     }
 
     .roster-card:hover {
@@ -294,6 +294,12 @@
       border-color: rgba(255, 255, 255, 0.03);
       text-decoration: line-through;
       text-decoration-color: rgba(255, 255, 255, 0.2);
+      cursor: not-allowed;
+    }
+
+    .roster-card.fired:hover {
+      transform: none;
+      border-color: rgba(255, 255, 255, 0.03);
     }
 
     .roster-name {
@@ -375,9 +381,57 @@
       opacity: 0.2;
     }
 
-    .certificate-container {
-      max-width: 850px;
+    .certificate-wrapper {
       width: 100%;
+      max-width: 850px;
+    }
+
+    .cert-toggle {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px 20px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #ccc;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .cert-toggle:hover {
+      background: rgba(255, 26, 26, 0.06);
+      border-color: #ff1a1a55;
+    }
+
+    .cert-toggle .arrow {
+      transition: 0.3s;
+      font-size: 1.2rem;
+      color: #888;
+    }
+
+    .cert-toggle.open .arrow {
+      transform: rotate(180deg);
+    }
+
+    .cert-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.3s ease;
+      opacity: 0;
+      margin-bottom: 0;
+    }
+
+    .cert-content.open {
+      max-height: 2000px;
+      opacity: 1;
+      margin-bottom: 20px;
+    }
+
+    .certificate-container {
       background: linear-gradient(160deg, #141414 0%, #0a0a0a 40%, #111111 100%);
       border: 3px solid #2a2a2a;
       border-radius: 6px;
@@ -476,7 +530,6 @@
     .support-note { margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 1.5rem; line-height: 1.8; }
     .support-note strong { color: #ff4444; font-weight: 600; }
 
-    /* استایل‌های بخش درباره ما */
     .about-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.06);
@@ -585,6 +638,67 @@
     .online-box .msg { color: rgba(255, 255, 255, 0.6); font-size: 1.3rem; line-height: 2; font-weight: 500; }
     .online-box .sub-msg { color: rgba(255, 255, 255, 0.2); font-size: 0.9rem; margin-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 1.5rem; }
 
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #0a0a0a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .loading-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 3px solid rgba(255, 26, 26, 0.1);
+      border-top: 3px solid #ff1a1a;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 30px;
+      box-shadow: 0 0 40px rgba(255, 26, 26, 0.1);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loader-text {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 1.2rem;
+      letter-spacing: 6px;
+      animation: pulse-text 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse-text {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+
+    .not-registered {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    .not-registered .icon {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 1rem;
+      opacity: 0.3;
+    }
+
     @media (max-width: 768px) {
       .nav { justify-content: center; height: auto; padding: 0.6rem 1rem; gap: 0.4rem; }
       .nav a { font-size: 0.85rem; padding: 0.3rem 0.8rem; }
@@ -608,6 +722,7 @@
       .about-card { padding: 2rem 1.5rem; }
       .about-card h2 { font-size: 1.8rem; }
       .about-card .about-text { font-size: 1rem; line-height: 2.2; }
+      .cert-toggle { font-size: 0.95rem; padding: 10px 16px; }
     }
 
     @media (max-width: 480px) {
@@ -625,10 +740,16 @@
       .online-box .big-icon { font-size: 3.5rem; }
       .online-box .msg { font-size: 1rem; }
       .about-card .about-text { font-size: 0.9rem; }
+      .cert-toggle { font-size: 0.85rem; padding: 8px 12px; }
     }
   </style>
 </head>
 <body>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loader"></div>
+    <div class="loader-text">در حال بارگذاری</div>
+  </div>
 
   <div class="bg-animation">
     <span></span><span></span><span></span><span></span><span></span>
@@ -678,11 +799,9 @@
     <div class="roster-section">
       <div class="roster-title">وضعیت نیروهای APT WAR</div>
       <div class="roster-grid" id="rosterGrid">
-        <!-- اعضا با جاوااسکریپت مرتب و اضافه می‌شوند -->
       </div>
 
       <div class="fired-note" id="firedNote">
-        <!-- متن اخراجی‌ها با جاوااسکریپت ساخته می‌شود -->
       </div>
     </div>
   </section>
@@ -696,48 +815,205 @@
   </section>
 
   <section class="page" id="plaques">
-    <div class="certificate-container">
-      <div class="corner-decoration top-right"></div>
-      <div class="corner-decoration top-left"></div>
-      <div class="corner-decoration bottom-right"></div>
-      <div class="corner-decoration bottom-left"></div>
-      <div class="cert-seal">APT<br>WAR</div>
-      <div class="cert-header">
-        <div class="cert-team-logo">
-          <span class="apt">APT</span>
-          <span class="war">WAR</span>
+    <div class="certificate-wrapper">
+
+      <div class="cert-toggle" data-target="cert1">
+        <span>📜 تقدیرنامه شماره ۱</span>
+        <span class="arrow">▾</span>
+      </div>
+      <div class="cert-content" id="cert1">
+        <div class="certificate-container">
+          <div class="corner-decoration top-right"></div>
+          <div class="corner-decoration top-left"></div>
+          <div class="corner-decoration bottom-right"></div>
+          <div class="corner-decoration bottom-left"></div>
+          <div class="cert-seal">APT<br>WAR</div>
+          <div class="cert-header">
+            <div class="cert-team-logo">
+              <span class="apt">APT</span>
+              <span class="war">WAR</span>
+            </div>
+            <div class="cert-title">لوح تقدیر</div>
+            <div class="cert-subtitle">سپاس‌گزاری و بازنشستگی نیرو</div>
+          </div>
+          <div class="cert-divider"></div>
+          <div class="cert-image-section">
+            <div class="cert-image-frame">
+              <img src="https://APTWAR.github.io/%D8%AA%D9%82%D8%AF%DB%8C%D8%B1%E2%80%8C%D9%86%D8%A7%D9%85%D9%87.jpg" alt="تقدیرنامه" loading="lazy">
+            </div>
+          </div>
+          <div class="cert-recipient">
+            <div class="label">این لوح تقدیم می‌شود به</div>
+            <div class="name-line">نیروی ارزشمند تیم</div>
+          </div>
+          <div class="cert-body">
+            <p class="message">
+              تو فقط یک هکر نبودی؛<br>
+              <span class="highlight">تو روح تیم بودی.</span><br>
+              مدت زمان حضورت، پربارترین روزهای ما بود.<br>
+              رفتنت سخت است، اما به خود می‌بالیم که روزی تو را هم‌تیم خود داشتیم.<br>
+              با کمال تشکر و قدردانی،<br>
+              امیدواریم که در تمام مراحل زندگی و کاری<br>
+              <span class="highlight">موفق و مؤید</span> باشید.<br><br>
+              <span style="color:#777;font-size:0.9rem;">یادت همیشه در خط‌های کد ما جاریست...</span>
+            </p>
+          </div>
+          <div class="cert-footer-sign">
+            <div class="signature">
+              فرماندهی تیم APT WAR
+              <span class="title">تاریخ: ۱۴۰۵</span>
+            </div>
+          </div>
         </div>
-        <div class="cert-title">لوح تقدیر</div>
-        <div class="cert-subtitle">سپاس‌گزاری و بازنشستگی نیرو</div>
       </div>
-      <div class="cert-divider"></div>
-      <div class="cert-image-section">
-        <div class="cert-image-frame">
-          <img src="https://APTWAR.github.io/%D8%AA%D9%82%D8%AF%DB%8C%D8%B1%E2%80%8C%D9%86%D8%A7%D9%85%D9%87.jpg" alt="تقدیرنامه" loading="lazy">
+
+      <div class="cert-toggle" data-target="cert2">
+        <span>📜 تقدیرنامه شماره ۲</span>
+        <span class="arrow">▾</span>
+      </div>
+      <div class="cert-content" id="cert2">
+        <div class="certificate-container">
+          <div class="corner-decoration top-right"></div>
+          <div class="corner-decoration top-left"></div>
+          <div class="corner-decoration bottom-right"></div>
+          <div class="corner-decoration bottom-left"></div>
+          <div class="cert-seal">APT<br>WAR</div>
+          <div class="cert-header">
+            <div class="cert-team-logo">
+              <span class="apt">APT</span>
+              <span class="war">WAR</span>
+            </div>
+            <div class="cert-title">لوح تقدیر</div>
+            <div class="cert-subtitle">عضو فعال تیم</div>
+          </div>
+          <div class="cert-divider"></div>
+          <div class="cert-image-section">
+            <div class="cert-image-frame">
+              <img src="https://APTWAR.github.io/%D8%AA%D9%82%D8%AF%DB%8C%D8%B1%D9%86%D8%A7%D9%85%D9%87%DB%B2.jpg" alt="تقدیرنامه" loading="lazy">
+            </div>
+          </div>
+          <div class="cert-recipient">
+            <div class="label">این لوح تقدیم می‌شود به</div>
+            <div class="name-line">هم‌تیم عزیز و ارزشمند</div>
+          </div>
+          <div class="cert-body">
+            <p class="message">
+              تشکر از همراهی و کمک‌هات واقعاً ارزشمند بود.<br>
+              از وقتی که گذاشتی و دانشی که به اشتراک گذاشتی، بی‌نهایت سپاسگزاریم.<br>
+              حضورت در تیم، باعث پیشرفت و دلگرمی همه‌ی ما شد. متشکریم.<br>
+              کمک‌هات همیشه در مسیر تیم مؤثر و الهام‌بخش بود. از ته دل ممنونیم.<br>
+              سپاس فراوان برای همه‌ی حمایت‌ها و همراهی‌های بی‌دریغت.<br><br>
+              <span style="color:#777;font-size:0.9rem;">همیشه یکی از اعضای اصلی این تیم خواهی بود.</span>
+            </p>
+          </div>
+          <div class="cert-footer-sign">
+            <div class="signature">
+              فرماندهی تیم APT WAR
+              <span class="title">تاریخ: ۱۴۰۵</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="cert-recipient">
-        <div class="label">این لوح تقدیم می‌شود به</div>
-        <div class="name-line">نیروی ارزشمند تیم</div>
+
+      <div class="cert-toggle" data-target="cert3">
+        <span>📜 تقدیرنامه شماره ۳</span>
+        <span class="arrow">▾</span>
       </div>
-      <div class="cert-body">
-        <p class="message">
-          تو فقط یک هکر نبودی؛<br>
-          <span class="highlight">تو روح تیم بودی.</span><br>
-          مدت زمان حضورت، پربارترین روزهای ما بود.<br>
-          رفتنت سخت است، اما به خود می‌بالیم که روزی تو را هم‌تیم خود داشتیم.<br>
-          با کمال تشکر و قدردانی،<br>
-          امیدواریم که در تمام مراحل زندگی و کاری<br>
-          <span class="highlight">موفق و مؤید</span> باشید.<br><br>
-          <span style="color:#777;font-size:0.9rem;">یادت همیشه در خط‌های کد ما جاریست...</span>
-        </p>
-      </div>
-      <div class="cert-footer-sign">
-        <div class="signature">
-          فرماندهی تیم APT WAR
-          <span class="title">تاریخ: ۱۴۰۵</span>
+      <div class="cert-content" id="cert3">
+        <div class="certificate-container">
+          <div class="corner-decoration top-right"></div>
+          <div class="corner-decoration top-left"></div>
+          <div class="corner-decoration bottom-right"></div>
+          <div class="corner-decoration bottom-left"></div>
+          <div class="cert-seal">APT<br>WAR</div>
+          <div class="cert-header">
+            <div class="cert-team-logo">
+              <span class="apt">APT</span>
+              <span class="war">WAR</span>
+            </div>
+            <div class="cert-title">لوح تقدیر</div>
+            <div class="cert-subtitle">در انتظار ثبت</div>
+          </div>
+          <div class="cert-divider"></div>
+          <div class="not-registered">
+            <span class="icon">📭</span>
+            لوح تقدیر شماره ۳ فعلاً ثبت نشده است.
+          </div>
+          <div class="cert-footer-sign">
+            <div class="signature">
+              فرماندهی تیم APT WAR
+              <span class="title">تاریخ: —</span>
+            </div>
+          </div>
         </div>
       </div>
+
+      <div class="cert-toggle" data-target="cert4">
+        <span>📜 تقدیرنامه شماره ۴</span>
+        <span class="arrow">▾</span>
+      </div>
+      <div class="cert-content" id="cert4">
+        <div class="certificate-container">
+          <div class="corner-decoration top-right"></div>
+          <div class="corner-decoration top-left"></div>
+          <div class="corner-decoration bottom-right"></div>
+          <div class="corner-decoration bottom-left"></div>
+          <div class="cert-seal">APT<br>WAR</div>
+          <div class="cert-header">
+            <div class="cert-team-logo">
+              <span class="apt">APT</span>
+              <span class="war">WAR</span>
+            </div>
+            <div class="cert-title">لوح تقدیر</div>
+            <div class="cert-subtitle">در انتظار ثبت</div>
+          </div>
+          <div class="cert-divider"></div>
+          <div class="not-registered">
+            <span class="icon">📭</span>
+            لوح تقدیر شماره ۴ فعلاً ثبت نشده است.
+          </div>
+          <div class="cert-footer-sign">
+            <div class="signature">
+              فرماندهی تیم APT WAR
+              <span class="title">تاریخ: —</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-toggle" data-target="cert5">
+        <span>📜 تقدیرنامه شماره ۵</span>
+        <span class="arrow">▾</span>
+      </div>
+      <div class="cert-content" id="cert5">
+        <div class="certificate-container">
+          <div class="corner-decoration top-right"></div>
+          <div class="corner-decoration top-left"></div>
+          <div class="corner-decoration bottom-right"></div>
+          <div class="corner-decoration bottom-left"></div>
+          <div class="cert-seal">APT<br>WAR</div>
+          <div class="cert-header">
+            <div class="cert-team-logo">
+              <span class="apt">APT</span>
+              <span class="war">WAR</span>
+            </div>
+            <div class="cert-title">لوح تقدیر</div>
+            <div class="cert-subtitle">در انتظار ثبت</div>
+          </div>
+          <div class="cert-divider"></div>
+          <div class="not-registered">
+            <span class="icon">📭</span>
+            لوح تقدیر شماره ۵ فعلاً ثبت نشده است.
+          </div>
+          <div class="cert-footer-sign">
+            <div class="signature">
+              فرماندهی تیم APT WAR
+              <span class="title">تاریخ: —</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -802,6 +1078,9 @@
 
   <script>
     (function() {
+      window.addEventListener('load', function() {
+        document.getElementById('loadingOverlay').classList.add('hidden');
+      });
 
       const START_KEY = 'aptwar_start_ts';
       let start = localStorage.getItem(START_KEY);
@@ -845,14 +1124,11 @@
         { name: 'الیوت', status: 'fired' }
       ];
 
-      // ترتیب دلخواه: active (✅️) > inactive (🚫) > fired (کمرنگ)
       const statusOrder = { active: 0, inactive: 1, fired: 2 };
-
       membersData.sort((a, b) => statusOrder[a.status] - statusOrder[b.status]);
 
       const rosterGrid = document.getElementById('rosterGrid');
       const firedNote = document.getElementById('firedNote');
-
       const firedList = [];
 
       membersData.forEach(member => {
@@ -881,7 +1157,6 @@
         card.appendChild(badgeSpan);
         rosterGrid.appendChild(card);
       });
-
 
       if (firedList.length > 0) {
         const allButLast = firedList.slice(0, -1).join('، ');
@@ -957,6 +1232,18 @@
           showPage(hash);
         }
       }
+
+      document.querySelectorAll('.cert-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          const targetId = this.dataset.target;
+          const content = document.getElementById(targetId);
+          if (content) {
+            content.classList.toggle('open');
+            this.classList.toggle('open');
+          }
+        });
+      });
+
     })();
   </script>
 </body>
