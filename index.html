@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -475,20 +476,81 @@
     .support-note { margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 1.5rem; line-height: 1.8; }
     .support-note strong { color: #ff4444; font-weight: 600; }
 
+    /* استایل‌های بخش درباره ما */
     .about-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 32px;
       padding: 3rem 2.5rem;
-      max-width: 700px;
+      max-width: 800px;
       width: 100%;
       text-align: center;
       box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
     }
 
-    .about-card h2 { color: #ff1a1a; font-size: 2.2rem; letter-spacing: 2px; margin-bottom: 1.5rem; }
-    .about-card p { color: rgba(255, 255, 255, 0.5); font-size: 1.2rem; letter-spacing: 1px; }
-    .about-card .writing { display: inline-block; margin-top: 1.2rem; padding: 0.5rem 2rem; border: 1px dashed rgba(255, 255, 255, 0.08); border-radius: 60px; color: rgba(255, 255, 255, 0.2); font-size: 0.9rem; }
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(255, 26, 26, 0.03) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .about-card h2 {
+      color: #ff1a1a;
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-card .about-text {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.2rem;
+      line-height: 2.4;
+      letter-spacing: 0.5px;
+      max-width: 650px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      text-align: justify;
+      text-align-last: center;
+    }
+
+    .about-card .about-text .highlight {
+      color: #ff4444;
+      font-weight: 700;
+      text-shadow: 0 0 15px rgba(255, 26, 26, 0.3);
+    }
+
+    .about-card .about-text .highlight-gold {
+      color: #ffaa00;
+      font-weight: 600;
+    }
+
+    .about-card .about-divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff1a1a55, transparent);
+      margin: 2rem auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-card .about-footer {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+      font-style: italic;
+    }
 
     .online-page {
       display: none;
@@ -543,6 +605,9 @@
       .online-box .msg { font-size: 1.1rem; }
       .certificate-container { padding: 2rem 1.2rem; }
       .cert-seal { width: 55px; height: 55px; font-size: 0.55rem; bottom: 25px; left: 25px; }
+      .about-card { padding: 2rem 1.5rem; }
+      .about-card h2 { font-size: 1.8rem; }
+      .about-card .about-text { font-size: 1rem; line-height: 2.2; }
     }
 
     @media (max-width: 480px) {
@@ -559,6 +624,7 @@
       .support-contact { font-size: 0.9rem; }
       .online-box .big-icon { font-size: 3.5rem; }
       .online-box .msg { font-size: 1rem; }
+      .about-card .about-text { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -611,74 +677,12 @@
 
     <div class="roster-section">
       <div class="roster-title">وضعیت نیروهای APT WAR</div>
-
-      <div class="roster-grid">
-        <div class="roster-card">
-          <span class="roster-name">به معنی فعال بودن</span>
-          <span class="roster-badge active">✅️</span>
-        </div>
-        <div class="roster-card">
-          <span class="roster-name"> به معنی غیرفعال بودن</span>
-          <span class="roster-badge inactive">🚫</span>
-        </div>
-        <div class="roster-card">
-          <span class="roster-name">سایبر بم</span>
-          <span class="roster-badge active">✅️</span>
-        </div>
-        <div class="roster-card">
-          <span class="roster-name">قائم</span>
-          <span class="roster-badge active">✅️</span>
-        </div>
-        <div class="roster-card">
-          <span class="roster-name">ایکس فار</span>
-          <span class="roster-badge active">✅️</span>
-        </div>
-        <div class="roster-card">
-          <span class="roster-name">لورد</span>
-          <span class="roster-badge inactive">🚫</span>
-        </div>
-        <div class="roster-card">
-          <span class="roster-name">نایت لایت</span>
-          <span class="roster-badge active">✅️</span>
-        </div>
-        <div class="roster-card">
-          <span class="roster-name">تیفانی</span>
-          <span class="roster-badge active">✅️</span>
-        </div>
-        <div class="roster-card">
-          <span class="roster-name">نازی</span>
-          <span class="roster-badge active">✅️</span>
-        </div>
-        <div class="roster-card">
-          <span class="roster-name">دارکنس</span>
-          <span class="roster-badge inactive">🚫</span>
-        </div>
-        <div class="roster-card fired">
-          <span class="roster-name">هاکس</span>
-          <span class="roster-badge inactive">🚫</span>
-        </div>
-        <div class="roster-card fired">
-          <span class="roster-name">گلکسی</span>
-          <span class="roster-badge inactive">🚫</span>
-        </div>
-        <div class="roster-card fired">
-          <span class="roster-name">بلک‌تایگ</span>
-          <span class="roster-badge inactive">🚫</span>
-        </div>
-        <div class="roster-card fired">
-          <span class="roster-name">خشم شب</span>
-          <span class="roster-badge inactive">🚫</span>
-        </div>
-        <div class="roster-card fired">
-          <span class="roster-name">الیوت</span>
-          <span class="roster-badge inactive">🚫</span>
-        </div>
+      <div class="roster-grid" id="rosterGrid">
+        <!-- اعضا با جاوااسکریپت مرتب و اضافه می‌شوند -->
       </div>
 
-      <div class="fired-note">
-        <strong>آقایان هاکس، بلک‌تایگ، خشم شب، الیوت و گلکسی</strong><br>
-        طی اجرای طرح اخراجی افراد ضعیف از تیم اخراج شدند.<br>
-        <em>(با وجود اینکه گلکسی قدرت بیشتری نسبت به بقیه داشت، اما باز هم متأسفانه با او خداحافظی کردیم)</em>
+      <div class="fired-note" id="firedNote">
+        <!-- متن اخراجی‌ها با جاوااسکریپت ساخته می‌شود -->
       </div>
     </div>
   </section>
@@ -767,9 +771,23 @@
 
   <section class="page" id="about">
     <div class="about-card">
-      <h2>درباره ما</h2>
-      <p>در حال نوشتن هستیم، هنوز چیزی ثبت نشده</p>
-      <div class="writing">✍️ به زودی ...</div>
+      <h2>✦ درباره ما ✦</h2>
+      <div class="about-divider"></div>
+      <div class="about-text">
+        <p style="margin-bottom: 1.2rem;">
+          «در جهانی که همه چیز به صفر و یک‌های قطعی تقلیل یافته، <span class="highlight">APT WAR</span> در طیف خاکستری حرکت می‌کند. ما تیمی نیستیم که بخواهیم قدرت هکری خود را با شاخص‌های مرسوم به رخ بکشیم، همان‌طور که ضعف را نیز برنمی‌تابیم.
+        </p>
+        <p style="margin-bottom: 1.2rem;">
+          بنیان‌گذار ما، <span class="highlight-gold">ویلکس</span>، ساختاری را بنا نهاد که بر پایه <span class="highlight">"افشای هدفمند"</span> شکل گرفته، نه تخریب کورکورانه. <span class="highlight">APT WAR</span> مانند شبحی است در دستگاه‌ها؛ نه آن‌قدر پرسر و صدا که شناسایی شویم، نه آن‌قدر خاموش که به فراموشی سپرده شویم.
+        </p>
+        <p>
+          ما انتخاب می‌کنیم که دیده شویم، فقط زمانی که حقیقت نیاز به آشکار شدن داشته باشد. قدرت ما در اندازه ما نیست، در <span class="highlight">تاثیر نقطه‌ای</span> ماست.»
+        </p>
+      </div>
+      <div class="about-divider"></div>
+      <div class="about-footer">
+        — We are the gray spectrum —
+      </div>
     </div>
   </section>
 
@@ -784,6 +802,7 @@
 
   <script>
     (function() {
+
       const START_KEY = 'aptwar_start_ts';
       let start = localStorage.getItem(START_KEY);
       if (!start) {
@@ -809,6 +828,72 @@
 
       updateTimer();
       setInterval(updateTimer, 1000);
+
+      const membersData = [
+        { name: 'سایبر بم', status: 'active' },
+        { name: 'قائم', status: 'active' },
+        { name: 'ایکس فار', status: 'active' },
+        { name: 'لورد', status: 'inactive' },
+        { name: 'نایت لایت', status: 'active' },
+        { name: 'تیفانی', status: 'active' },
+        { name: 'نازی', status: 'active' },
+        { name: 'دارکنس', status: 'inactive' },
+        { name: 'هاکس', status: 'fired' },
+        { name: 'گلکسی', status: 'fired' },
+        { name: 'بلک‌تایگ', status: 'fired' },
+        { name: 'خشم شب', status: 'fired' },
+        { name: 'الیوت', status: 'fired' }
+      ];
+
+      // ترتیب دلخواه: active (✅️) > inactive (🚫) > fired (کمرنگ)
+      const statusOrder = { active: 0, inactive: 1, fired: 2 };
+
+      membersData.sort((a, b) => statusOrder[a.status] - statusOrder[b.status]);
+
+      const rosterGrid = document.getElementById('rosterGrid');
+      const firedNote = document.getElementById('firedNote');
+
+      const firedList = [];
+
+      membersData.forEach(member => {
+        const card = document.createElement('div');
+        card.className = 'roster-card';
+        if (member.status === 'fired') {
+          card.classList.add('fired');
+          firedList.push(member.name);
+        }
+
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'roster-name';
+        nameSpan.textContent = member.name;
+
+        const badgeSpan = document.createElement('span');
+        badgeSpan.className = 'roster-badge';
+        if (member.status === 'active') {
+          badgeSpan.classList.add('active');
+          badgeSpan.textContent = '✅️';
+        } else {
+          badgeSpan.classList.add('inactive');
+          badgeSpan.textContent = '🚫';
+        }
+
+        card.appendChild(nameSpan);
+        card.appendChild(badgeSpan);
+        rosterGrid.appendChild(card);
+      });
+
+
+      if (firedList.length > 0) {
+        const allButLast = firedList.slice(0, -1).join('، ');
+        const last = firedList[firedList.length - 1];
+        const firedNamesStr = allButLast + ' و ' + last;
+
+        firedNote.innerHTML = `
+          <strong>${firedNamesStr}</strong><br>
+          طی اجرای طرح اخراجی افراد ضعیف از تیم اخراج شدند.<br>
+          <em>(با وجود اینکه گلکسی قدرت بیشتری نسبت به بقیه داشت، اما باز هم متأسفانه با او خداحافظی کردیم)</em>
+        `;
+      }
 
       const navLinks = document.querySelectorAll('.nav a');
       const pages = {
