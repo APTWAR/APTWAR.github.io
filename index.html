@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -212,7 +210,7 @@
       justify-content: center;
       gap: 1.2rem;
       flex-wrap: wrap;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .counter-item {
@@ -248,6 +246,61 @@
       color: rgba(255, 255, 255, 0.45);
       margin-top: 0.3rem;
       letter-spacing: 1px;
+    }
+
+    .legend-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 1rem 2rem;
+      margin-bottom: 2rem;
+      width: 100%;
+      max-width: 750px;
+      backdrop-filter: blur(4px);
+    }
+
+    .legend-title {
+      color: #ccc;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 0.6rem;
+      text-align: center;
+    }
+
+    .legend-items {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .legend-icon {
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .legend-icon.active {
+      color: #4eff4e;
+      text-shadow: 0 0 12px rgba(78, 255, 78, 0.4);
+    }
+
+    .legend-icon.inactive {
+      color: #ff3333;
+      text-shadow: 0 0 12px rgba(255, 51, 51, 0.4);
+    }
+
+    .legend-icon.traitor {
+      color: #ffaa00;
+      text-shadow: 0 0 12px rgba(255, 170, 0, 0.5);
     }
 
     .roster-section {
@@ -304,6 +357,11 @@
       border-color: rgba(255, 255, 255, 0.03);
     }
 
+    .roster-card.traitor {
+      border-color: #ffaa0055;
+      background: rgba(255, 170, 0, 0.05);
+    }
+
     .roster-name {
       font-size: 1rem;
       font-weight: 600;
@@ -327,6 +385,11 @@
     .roster-badge.inactive {
       color: #ff3333;
       text-shadow: 0 0 12px rgba(255, 51, 51, 0.5);
+    }
+
+    .roster-badge.traitor {
+      color: #ffaa00;
+      text-shadow: 0 0 12px rgba(255, 170, 0, 0.5);
     }
 
     .fired-note {
@@ -725,6 +788,9 @@
       .about-card h2 { font-size: 1.8rem; }
       .about-card .about-text { font-size: 1rem; line-height: 2.2; }
       .cert-toggle { font-size: 0.95rem; padding: 10px 16px; }
+      .legend-box { padding: 0.8rem 1.2rem; }
+      .legend-items { gap: 1.2rem; }
+      .legend-item { font-size: 0.8rem; }
     }
 
     @media (max-width: 480px) {
@@ -743,6 +809,10 @@
       .online-box .msg { font-size: 1rem; }
       .about-card .about-text { font-size: 0.9rem; }
       .cert-toggle { font-size: 0.85rem; padding: 8px 12px; }
+      .legend-box { padding: 0.6rem 0.8rem; }
+      .legend-items { gap: 0.8rem; flex-direction: column; align-items: center; }
+      .legend-item { font-size: 0.75rem; }
+      .legend-icon { font-size: 1rem; }
     }
   </style>
 </head>
@@ -795,6 +865,25 @@
       <div class="counter-item">
         <span class="counter-number" id="seconds">00</span>
         <span class="counter-label">ثانیه</span>
+      </div>
+    </div>
+
+    <!-- ===== باکس راهنما ===== -->
+    <div class="legend-box">
+      <div class="legend-title">📌 راهنمای وضعیت نیروها</div>
+      <div class="legend-items">
+        <div class="legend-item">
+          <span class="legend-icon active">✅️</span>
+          <span class="legend-text">به معنای فعال بودن</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-icon inactive">🚫</span>
+          <span class="legend-text">به معنای از تیم رفته</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-icon traitor">⚠️</span>
+          <span class="legend-text">به معنای خیانتکار</span>
+        </div>
       </div>
     </div>
 
@@ -990,17 +1079,40 @@
               <span class="war">WAR</span>
             </div>
             <div class="cert-title">لوح تقدیر</div>
-            <div class="cert-subtitle">در انتظار ثبت</div>
+            <div class="cert-subtitle">مقاومت و ایستادگی</div>
           </div>
           <div class="cert-divider"></div>
-          <div class="not-registered">
-            <span class="icon">📭</span>
-            لوح تقدیر شماره ۴ فعلاً ثبت نشده است.
+          <div class="cert-image-section">
+            <div class="cert-image-frame">
+              <img src="https://APTWAR.github.io/TaghdirnameNi.jpg" alt="تقدیرنامه مقاومت" loading="lazy">
+            </div>
+          </div>
+          <div class="cert-recipient">
+            <div class="label">این لوح تقدیم می‌شود به</div>
+            <div class="name-line">عضو وفادار و مقاوم تیم</div>
+          </div>
+          <div class="cert-body">
+            <p class="message">
+              در برابر هر حمله، <span class="highlight">مقاوم‌تر از هر فایروال؛</span><br>
+              در برابر هر افشا، <span class="highlight">استوارتر از هر تعهد.</span><br><br>
+              تمام تلاشت برای ماندن،<br>
+              وفاداریات برای نرفتن<br>
+              و حضورت برای جنگیدن...<br><br>
+              <span style="color:#aaa;font-size:0.95rem;">
+                این‌ها سرمایه‌های گم‌نشدنی تیم ماست.<br>
+                تو ثابت کردی که برخی از اعضا،<br>
+                نه با کدها که با قلب‌شان در تیم می‌مانند.
+              </span><br><br>
+              <span style="color:#777;font-size:0.9rem;">
+                ماندگاری‌ات، بزرگترین مقاومت تاریخ تیم ماست.<br>
+                از ته دل سپاسگزاریم...
+              </span>
+            </p>
           </div>
           <div class="cert-footer-sign">
             <div class="signature">
               فرماندهی تیم APT WAR
-              <span class="title">تاریخ: —</span>
+              <span class="title">تاریخ: ۱۴۰۵</span>
             </div>
           </div>
         </div>
@@ -1023,17 +1135,38 @@
               <span class="war">WAR</span>
             </div>
             <div class="cert-title">لوح تقدیر</div>
-            <div class="cert-subtitle">در انتظار ثبت</div>
+            <div class="cert-subtitle">وفاداری و شوخ‌طبعی</div>
           </div>
           <div class="cert-divider"></div>
-          <div class="not-registered">
-            <span class="icon">📭</span>
-            لوح تقدیر شماره ۵ فعلاً ثبت نشده است.
+          <div class="cert-image-section">
+            <div class="cert-image-frame">
+              <img src="https://APTWAR.github.io/TaghdirnameNa.jpg" alt="تقدیرنامه وفاداری و شوخ‌طبعی" loading="lazy">
+            </div>
+          </div>
+          <div class="cert-recipient">
+            <div class="label">این لوح تقدیم می‌شود به</div>
+            <div class="name-line">عضو شوخ و وفادار تیم</div>
+          </div>
+          <div class="cert-body">
+            <p class="message">
+              <span class="highlight">وفاداریات، سدی محکم در برابر خیانت بود؛</span><br>
+              شوخ‌طبعی‌هات، داروی تلخ‌ترین روزهای تیم<br>
+              و کلامت، <span class="highlight">موتور محرک همه‌ی ما برای ماندن.</span><br><br>
+              <span style="color:#aaa;font-size:0.95rem;">
+                با لبخندت، ابرها را کنار زدی<br>
+                و با وفاداری‌ات، اعتماد را به اوج رساندی.<br>
+                حضورت، گرمابخش سردترین لحظات بود.
+              </span><br><br>
+              <span style="color:#777;font-size:0.9rem;">
+                از ته دل سپاسگزاریم که هستی.<br>
+                یادت در قلب‌های ما جاودان است...
+              </span>
+            </p>
           </div>
           <div class="cert-footer-sign">
             <div class="signature">
               فرماندهی تیم APT WAR
-              <span class="title">تاریخ: —</span>
+              <span class="title">تاریخ: ۱۴۰۵</span>
             </div>
           </div>
         </div>
@@ -1144,24 +1277,29 @@
         { name: 'دارکنس', status: 'inactive' },
         { name: 'هاکس', status: 'fired' },
         { name: 'گلکسی', status: 'fired' },
-        { name: 'بلک‌تایگ', status: 'fired' },
+        { name: 'بلک‌تایگ', status: 'traitor' },
         { name: 'خشم شب', status: 'fired' },
         { name: 'الیوت', status: 'fired' }
       ];
 
-      const statusOrder = { active: 0, inactive: 1, fired: 2 };
+      const statusOrder = { active: 0, inactive: 1, traitor: 2, fired: 3 };
       membersData.sort((a, b) => statusOrder[a.status] - statusOrder[b.status]);
 
       const rosterGrid = document.getElementById('rosterGrid');
       const firedNote = document.getElementById('firedNote');
       const firedList = [];
+      const traitorList = [];
 
       membersData.forEach(member => {
         const card = document.createElement('div');
         card.className = 'roster-card';
+        
         if (member.status === 'fired') {
           card.classList.add('fired');
           firedList.push(member.name);
+        } else if (member.status === 'traitor') {
+          card.classList.add('traitor');
+          traitorList.push(member.name);
         }
 
         const nameSpan = document.createElement('span');
@@ -1170,9 +1308,13 @@
 
         const badgeSpan = document.createElement('span');
         badgeSpan.className = 'roster-badge';
+        
         if (member.status === 'active') {
           badgeSpan.classList.add('active');
           badgeSpan.textContent = '✅️';
+        } else if (member.status === 'traitor') {
+          badgeSpan.classList.add('traitor');
+          badgeSpan.textContent = '⚠️';
         } else {
           badgeSpan.classList.add('inactive');
           badgeSpan.textContent = '🚫';
@@ -1183,17 +1325,41 @@
         rosterGrid.appendChild(card);
       });
 
+      let firedText = '';
       if (firedList.length > 0) {
         const allButLast = firedList.slice(0, -1).join('، ');
         const last = firedList[firedList.length - 1];
-        const firedNamesStr = allButLast + ' و ' + last;
+        firedText = allButLast + (allButLast ? ' و ' : '') + last;
+      }
 
-        firedNote.innerHTML = `
-          <strong>${firedNamesStr}</strong><br>
+      let traitorText = '';
+      if (traitorList.length > 0) {
+        traitorText = traitorList.join('، ');
+      }
+
+      let noteHtml = '';
+      if (firedText && traitorText) {
+        noteHtml = `
+          <strong>${firedText}</strong><br>
+          طی اجرای طرح اخراجی افراد ضعیف از تیم اخراج شدند.<br>
+          <em>(با وجود اینکه گلکسی قدرت بیشتری نسبت به بقیه داشت، اما باز هم متأسفانه با او خداحافظی کردیم)</em><br><br>
+          <strong style="color:#ffaa00;">⚠️ ${traitorText}</strong><br>
+          این افراد به دلیل خیانت به تیم، برچسب خورده و از جمع ما جدا شدند.
+        `;
+      } else if (firedText) {
+        noteHtml = `
+          <strong>${firedText}</strong><br>
           طی اجرای طرح اخراجی افراد ضعیف از تیم اخراج شدند.<br>
           <em>(با وجود اینکه گلکسی قدرت بیشتری نسبت به بقیه داشت، اما باز هم متأسفانه با او خداحافظی کردیم)</em>
         `;
+      } else if (traitorText) {
+        noteHtml = `
+          <strong style="color:#ffaa00;">⚠️ ${traitorText}</strong><br>
+          این افراد به دلیل خیانت به تیم، برچسب خورده و از جمع ما جدا شدند.
+        `;
       }
+
+      firedNote.innerHTML = noteHtml;
 
       const navLinks = document.querySelectorAll('.nav a');
       const pages = {
@@ -1272,4 +1438,4 @@
     })();
   </script>
 </body>
-                                                                                                                          </html>
+  </html>
